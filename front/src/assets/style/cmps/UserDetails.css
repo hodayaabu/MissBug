@@ -1,0 +1,8 @@
+.user-details h3 {
+    color: var(--clr1);
+    font-size: 2em;
+}
+
+.user-details h4 {
+    color: var(--clr2);
+}

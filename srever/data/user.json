@@ -1,0 +1,16 @@
+[
+  {
+    "username": "admin",
+    "password": "admin",
+    "fullname": "Paz Levi",
+    "score": 100,
+    "isAdmin": true
+  },
+  {
+    "username": "tali",
+    "password": "$2b$10$B3cWVO8BRTrq3.RiSBLQGu.fcfe/ArB7gpf5vzwrgBowIpJrFOCjG",
+    "fullname": "talia",
+    "score": 100,
+    "isAdmin": false
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "title": "Cannot get a bug",
+    "severity": 8,
+    "description": "Can't solve this bug",
+    "labels": [
+      "critical",
+      "need-CR"
+    ],
+    "creator": {
+      "_id": "AHhvcz",
+      "fullname": "Alon Deloko"
+    }
+  },
+  {
+    "title": "test",
+    "severity": 8,
+    "description": "testing",
+    "labels": [
+      "hey"
+    ],
+    "creator": {
+      "_id": "dwdjfh",
+      "fullname": "talia",
+      "isAdmin": false
+    }
+  },
+  {
+    "title": "hey",
+    "severity": 5,
+    "description": "hey",
+    "labels": [
+      "hey"
+    ],
+    "creator": {
+      "_id": "JG4Bge",
+      "fullname": "shalom",
+      "isAdmin": false
+    }
+  }
+]
