@@ -8,8 +8,9 @@
       "need-CR"
     ],
     "creator": {
-      "_id": "AHhvcz",
-      "fullname": "Alon Deloko"
+      "_id": "6589a9a6cbbc2c6d37d9452d",
+      "fullname": "talia",
+      "isAdmin": false
     }
   },
   {
@@ -20,7 +21,7 @@
       "hey"
     ],
     "creator": {
-      "_id": "dwdjfh",
+      "_id": "6589a9a6cbbc2c6d37d9452d",
       "fullname": "talia",
       "isAdmin": false
     }
@@ -33,8 +34,8 @@
       "hey"
     ],
     "creator": {
-      "_id": "JG4Bge",
-      "fullname": "shalom",
+      "_id": "6589a9a6cbbc2c6d37d9452d",
+      "fullname": "talia",
       "isAdmin": false
     }
   }

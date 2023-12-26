@@ -4,18 +4,16 @@ import { bugService } from './bug.service.js';
 // List
 export async function getBugs(req, res) {
     try {
-        // const filterBy = {
-        //     title: req.query.filterBy.title || '',
-        //     minSeverity: +req.query.filterBy.minSeverity || 0,
-        //     labels: req.query.filterBy.labels || '',
-        //     pageIdx: req.query.filterBy.pageIdx || undefined
-        // }
-        // const sortBy = req.query.sortBy || {}
+        const filterBy = {
+            title: req.query.filterBy.title || '',
+            minSeverity: +req.query.filterBy.minSeverity || 0,
+            labels: req.query.filterBy.labels || '',
+            pageIdx: req.query.filterBy.pageIdx || undefined
+        }
+        const sortBy = req.query.sortBy || {}
 
-        // const bugs = await bugService.query(filterBy, sortBy)
-        const bugs = await bugService.query()
+        const bugs = await bugService.query(filterBy, sortBy)
 
-        // console.log(bugs);
         res.send(bugs)
     } catch (err) {
         res.status(400).send(`Couldn't get bugs`)
@@ -47,7 +45,7 @@ export async function removeBug(req, res) {
 
     try {
         await bugService.remove(bugId, req.loggedinUser)
-        res.send({ msg: 'Deleted OK', deletedCount })
+        res.send('Deleted OK')
     } catch (err) {
         res.status(400).send(err)
         console.log(err);

@@ -8,6 +8,7 @@ import { utilService } from "../../services/util.service.js"
 export const bugService = {
     query,
     getById,
+    getByCreator,
     remove,
     save,
     addBugMsg,
@@ -56,6 +57,19 @@ async function getById(bugId) {
     }
 }
 
+async function getByCreator(userId) {
+    try {
+
+        const collection = await dbService.getCollection(collectionName)
+        const bugs = await collection.find({ creator: { _id: new ObjectId(userId) } })
+        if (!bugs) throw `Couldn't find bugs with creator _id ${userId}`
+        return bugs
+    } catch (err) {
+        loggerService.error(err)
+        throw (err)
+    }
+}
+
 async function remove(bugId, loggedinUser) {
     try {
         const collection = await dbService.getCollection(collectionName)
@@ -65,8 +79,8 @@ async function remove(bugId, loggedinUser) {
 
         if (!loggedinUser.isAdmin && bug.creator._id !== loggedinUser._id) throw `Not your bug!`
 
-        const { deletedCount } = await collection.deleteOne({ _id: bug._id })
-        return deletedCount
+        await collection.deleteOne({ _id: new ObjectId(bugId) })
+
     } catch (err) {
         loggerService.error(err)
         throw err
@@ -146,7 +160,6 @@ function _buildCriteria(filterBy) {
     return criteria
 }
 
-//Need checking
 function _sortBugs(bugs, sortBy) {
     if (sortBy.by === 'title') {
         bugs.sort({ title: sortBy.dir })

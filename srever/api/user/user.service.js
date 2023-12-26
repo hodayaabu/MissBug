@@ -3,6 +3,7 @@ import { ObjectId } from 'mongodb'
 import { loggerService } from '../../services/logger.service.js'
 import { dbService } from "../../services/db.service.js"
 import { msgService } from '../msgs/msg.service.js'
+import { bugService } from '../bugs/bug.service.js'
 
 export const userService = {
     query,
@@ -46,24 +47,15 @@ async function getById(userId) {
     }
 }
 
-// async function getUserBugs(userId) {
-//     try {
-//         const userBugs = bugs.filter((bug) => bug.creator._id === userId)
 
-//         if (!userBugs) throw `Couldn't find user's bugs with _id ${userId}`
-//         return userBugs
-//     } catch (err) {
-//         loggerService.error(err)
-//         throw (err)
-//     }
-// }
-
-
-//need to privent delete user with bugs --- not working
+//need to prevent delete user with bugs --- not working
 async function remove(userId) {
     try {
         const collection = await dbService.getCollection(collectionName)
         const user = await collection.findOne({ _id: new ObjectId(userId) })
+
+        // const usersBug = await bugService.getByCreator(userId)
+        // if (usersBug) throw "could`t remove user with bugs"
 
         if (!user) throw `Couldn't find user with _id ${userId}`
 
@@ -74,43 +66,12 @@ async function remove(userId) {
     }
 }
 
-// async function save(userToSave, loggedinUser) {
-//     try {
-//         const collection = await dbService.getCollection(collectionName)
-//         if (userToSave._id) {
-
-//             const newUser = {
-//                 _id: new ObjectId(userToSave._id),
-//                 username: userToSave.username,
-//                 fullname: userToSave.severity,
-//                 score: userToSave.score
-//             }
-
-//             const oldUser = await collection.findOne({ _id: new ObjectId(userToSave._id) })
-//             if (!oldUser) throw `Couldn't find user with _id ${userToSave._id}`
-
-//             if (!loggedinUser.isAdmin) throw `Not an admin!`
-//             await collection.updateOne({ _id: new ObjectId(oldUser._id) }, { $set: newUser })
-
-//         } else {
-//             userToSave.score = 100
-//             userToSave.isAdmin = false
-//             await collection.insertOne(userToSave)
-
-//         }
-//         return userToSave
-//     } catch (err) {
-//         loggerService.error(err)
-//         throw err
-//     }
-// }
-
 async function update(user) {
     try {
         // peek only updatable properties
         const userToSave = {
             _id: new ObjectId(user._id), // needed for the returnd obj
-            fullname: user.fullname,
+            username: user.username,
             score: user.score,
         }
         const collection = await dbService.getCollection(collectionName)

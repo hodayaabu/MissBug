@@ -6,6 +6,6 @@ const router = express.Router()
 
 router.get('/', getMsgs)
 router.post('/', requireAuth, addMsg)
-router.delete('/:id', requireAdmin, deleteMsg)
+router.delete('/:id', requireAuth, deleteMsg)
 
 export const msgRoutes = router
