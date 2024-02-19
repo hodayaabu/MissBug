@@ -64,6 +64,5 @@ Delete Bug: Remove unwanted bugs from the system.
 Update Bug: Modify bug details to keep information accurate.
 Filter Bugs: Use filtering options to quickly find specific bugs.
 User Support: Manage users and their access to the bug management system.
-Contributing
 
-We welcome contributions! If you would like to contribute to the MissBug Site, please follow our contribution guidelines.
+
