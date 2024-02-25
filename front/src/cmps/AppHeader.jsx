@@ -17,28 +17,6 @@ export function AppHeader() {
     // component did mount when dependancy array is empty
   }, [])
 
-  async function onLogin(credentials) {
-    try {
-      const user = await userService.login(credentials)
-      setLoggedinUser(user)
-      showSuccessMsg(`Welcome ${user.fullname}`)
-    } catch (err) {
-      console.log('Cannot login :', err)
-      showErrorMsg(`Cannot login`)
-    }
-  }
-
-  async function onSignup(credentials) {
-    try {
-      const user = await userService.signup(credentials)
-      setLoggedinUser(user)
-      showSuccessMsg(`Welcome ${user.fullname}`)
-    } catch (err) {
-      console.log('Cannot signup :', err)
-      showErrorMsg(`Cannot signup`)
-    }
-  }
-
   async function onLogout() {
     console.log('logout');
     try {
@@ -51,8 +29,6 @@ export function AppHeader() {
       showErrorMsg(`Cannot logout`)
     }
   }
-
-
 
   return (
     <header className='app-header '>
@@ -67,7 +43,7 @@ export function AppHeader() {
         </nav>
 
         <section className="login-signup-container">
-          {!loggedinUser && <LoginSignup onLogin={onLogin} onSignup={onSignup} />}
+          {!loggedinUser && <LoginSignup />}
           {loggedinUser && <div className="user-preview">
             <Link to={`/user/${loggedinUser._id}`}><h3>Hello {loggedinUser.fullname}</h3></Link>
 
@@ -76,9 +52,8 @@ export function AppHeader() {
           </div>}
         </section>
 
-        <UserMsg />
-
       </div>
+      <UserMsg />
     </header>
   )
 }

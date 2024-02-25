@@ -54,8 +54,9 @@ async function remove(userId) {
         const collection = await dbService.getCollection(collectionName)
         const user = await collection.findOne({ _id: new ObjectId(userId) })
 
-        // const usersBug = await bugService.getByCreator(userId)
-        // if (usersBug) throw "could`t remove user with bugs"
+        const usersBug = await bugService.getByCreator(userId)
+        console.log(usersBug);
+        if (usersBug.length <= 0) throw "could`t remove user with bugs"
 
         if (!user) throw `Couldn't find user with _id ${userId}`
 

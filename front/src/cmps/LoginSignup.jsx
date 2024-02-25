@@ -1,10 +1,14 @@
 import { useState } from 'react'
 import { userService } from '../services/user.service.js'
+import { Login } from './Login.jsx'
+import { useNavigate } from 'react-router'
 
 export function LoginSignup({ onSignup, onLogin }) {
     // const [users, setUsers] = useState([])
     const [credentials, setCredentials] = useState(userService.getEmptyUser())
     const [isSignup, setIsSignup] = useState(false)
+
+    const navigate = useNavigate()
 
     // useEffect(() => {
     //     loadUsers()
@@ -43,17 +47,22 @@ export function LoginSignup({ onSignup, onLogin }) {
 
     }
 
-    function toggleSignup() {
-        setIsSignup(!isSignup)
+    function onClickLogin() {
+        navigate('/login')
     }
 
 
     return (
         <div className="login-page">
             <p>
-                <button className="btn-link" onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button>
+                <button className="btn-link" onClick={onClickLogin}>Login</button>
             </p>
-            {!isSignup && <form className="login-form" onSubmit={onSubmitForm}>
+
+            {/* {!isSignup && <Login onLogin={onLogin} />} */}
+
+
+            {/* {!isSignup &&
+             <form className="login-form" onSubmit={onSubmitForm}>
                 {/* <select
                     name="username"
                     value={credentials.username}
@@ -62,26 +71,27 @@ export function LoginSignup({ onSignup, onLogin }) {
                     <option value="">Select User</option>
                     {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
                 </select> */}
-                <input
-                    type="text"
-                    name="username"
-                    value={credentials.username}
-                    placeholder="Username"
-                    onChange={handleChange}
-                    required
-                    autoFocus
-                />
-                <input
-                    type="password"
-                    name="password"
-                    value={credentials.password}
-                    placeholder="Password"
-                    onChange={handleChange}
-                    required
-                />
-                <button>Login!</button>
-            </form>}
-            <div className="signup-section">
+            {/* <input
+                type="text"
+                name="username"
+                value={credentials.username}
+                placeholder="Username"
+                onChange={handleChange}
+                required
+                autoFocus
+            />
+            <input
+                type="password"
+                name="password"
+                value={credentials.password}
+                placeholder="Password"
+                onChange={handleChange}
+                required
+            />
+            <button>Login!</button> */}
+            {/* </form>} */}
+
+            {/* <div className="signup-section">
                 {isSignup && <form className="signup-form" onSubmit={onSubmitForm}>
                     <input
                         type="text"
@@ -110,7 +120,7 @@ export function LoginSignup({ onSignup, onLogin }) {
 
                     <button >Signup!</button>
                 </form>}
-            </div>
+            </div> */}
         </div>
     )
 }

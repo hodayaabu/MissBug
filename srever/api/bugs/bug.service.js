@@ -61,7 +61,8 @@ async function getByCreator(userId) {
     try {
 
         const collection = await dbService.getCollection(collectionName)
-        const bugs = await collection.find({ creator: { _id: new ObjectId(userId) } })
+        const bugs = await collection.find({ "creator._id": new ObjectId(userId) }).toArray()
+        console.log(bugs);
         if (!bugs) throw `Couldn't find bugs with creator _id ${userId}`
         return bugs
     } catch (err) {
