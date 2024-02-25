@@ -1,6 +1,5 @@
 
 import { AppHeader } from './cmps/AppHeader.jsx'
-import { AppFooter } from './cmps/AppFooter.jsx'
 import { Home } from './pages/Home.jsx'
 import { Login } from './cmps/Login.jsx'
 import { Signup } from './cmps/Signup.jsx'
@@ -28,7 +27,6 @@ export function App() {
             <Route path='/about' element={<AboutUs />} />
           </Routes>
         </main>
-        <AppFooter />
       </div>
     </Router>
   )

@@ -14,7 +14,7 @@ export function AppHeader() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // component did mount when dependancy array is empty
+    setLoggedinUser(userService.getLoggedinUser())
   }, [])
 
   async function onLogout() {

@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { userService } from '../services/user.service.js'
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 export function Login() {
     // const [users, setUsers] = useState([])
     const [credentials, setCredentials] = useState(userService.getEmptyUser())
+    const navigate = useNavigate()
+
 
     // useEffect(() => {
     //     loadUsers()
@@ -25,9 +27,11 @@ export function Login() {
         try {
             const user = await userService.login(credentials)
             showSuccessMsg(`Welcome ${user.fullname}`)
+            navigate('/')
+
         } catch (err) {
             console.log('Cannot login :', err)
-            showErrorMsg(`Cannot login`)
+            showErrorMsg(`Cannot login: ${err}`)
         }
     }
 
@@ -43,7 +47,7 @@ export function Login() {
 
     async function onSubmitForm(ev = null) {
         if (ev) ev.preventDefault()
-        if (!credentials.username || !credentials.password || !credentials.fullname) return
+        if (!credentials.username || !credentials.password) return
         await onLogin(credentials)
         clearState()
 

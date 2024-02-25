@@ -1,19 +1,21 @@
 import { useState } from 'react'
 import { userService } from '../services/user.service.js'
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 export function Signup() {
     const [credentials, setCredentials] = useState(userService.getEmptyUser())
+    const navigate = useNavigate()
 
     async function onSignup(credentials) {
         try {
             const user = await userService.signup(credentials)
             showSuccessMsg(`Welcome ${user.fullname}`)
+            navigate('/')
         } catch (err) {
             console.log('Cannot signup :', err)
-            showErrorMsg(`Cannot signup`)
+            showErrorMsg(`Cannot signup: ${err}`)
         }
     }
 
