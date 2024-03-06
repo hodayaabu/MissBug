@@ -6,7 +6,7 @@ var axios = Axios.create({
 
 // const BASE_URL = '//localhost:3030/api/bug/'
 
-const BASE_URL = (window.process.env.NODE_ENV !== 'development') ?
+const BASE_URL = (process.env.NODE_ENV !== 'development') ?
     '/api/bug/' :
     '//localhost:3030/api/bug/'
 
